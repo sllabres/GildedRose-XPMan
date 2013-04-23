@@ -38,6 +38,10 @@ Updating
 
 Should you actually want to make a change to the Golden Master to represent a change of functionality (e.g. changing the behaviour of the Conjured Mana Cake) then, assuming you're happy with your diffs from the `verify` command, simply run the `generate` command again. 
 
+Windows
+-------
+
+Windows users should use the Power Shell versions of the scripts `generate.ps1` and `verify.ps1`.  Note that you might need to enter `Set-ExecutionPolicy RemoteSigned` into Power Shell to allow it to run scripts.
 
 
 Scripts originally based on code by Samir Talwar: https://github.com/SamirTalwar/trivia-golden-master
