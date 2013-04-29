@@ -1,9 +1,9 @@
 Golden Master scripts for the Gilded Rose Kata
 ==============================================
 
-As an alternative to using the Texttext tool, here are some simple bash scripts to allow you to work using the Golden Master technique.
+Here are some simple scripts to allow you to work using the Golden Master technique.
 
-The Golden Master technique involves pushing a large amount of data through your system and recording the output - the Golden Master.  After each refactoring step, you push the same data set through your code and compare the output to the Golden Master.
+The Golden Master technique involves pushing a large amount of data through your system and recording the output in a file - the Golden Master.  After each refactoring step, you push the same data set through your code and compare the output to the Golden Master.
 
 Generation
 ----------
@@ -12,15 +12,9 @@ The first job is to generate your Golden Master.  To do this you run the followi
 
 	generate "<Your command here>" "<output directory>"
 
-For example, to generate the Golden Master for the java example, I run
+The command to run for your choice of language can be found at the bottom of this file.
 
-	generate 'java -classpath ../Java/bin com.gildedrose.TexttestFixture 30' java
-
-The command to run for your choice of language can usually be pinched from the texttests/config.gr file.
-
-Note that you may need to ensure that enough data is pushed through your code.  This is the `30` parameter to the java command above, representing 30 days of updates.  You can check that you have enough data by simply inspecting the Golden Master file that is output.
-
-I've been using the language name as an output directory, so, for example, the above call will generate the `java/golden-master` file.  The file name can't be changed... without hacking the scripts.  Feel free if you want to.
+I've been using the language name as an output directory, so, for example, using `java` will generate the `java/golden-master` file.  The file name can't be changed... without hacking the scripts.  Feel free if you want to.
 
 Verification
 ------------
@@ -42,6 +36,26 @@ Windows
 -------
 
 Windows users should use the Power Shell versions of the scripts `generate.ps1` and `verify.ps1`.  Note that you might need to enter `Set-ExecutionPolicy RemoteSigned` into Power Shell to allow it to run scripts.
+
+Language Specific Usage
+-----------------------
+
+Note that you may need to ensure that enough data is pushed through your code.  The tests provided in this repo require 30 days' worh of updates, which explains the parameter 30 for some languages (for the others the 30 is burnt in).  You can check that you have enough data by simply inspecting the Golden Master file that is output.
+
+	generate 'java -classpath ../Java/bin com.gildedrose.TexttestFixture 30' java
+	verify 'java -classpath ../Java/bin com.gildedrose.TexttestFixture 30' java
+
+	generate 'python ../python/texttest_fixture.py 30' python
+	verify 'python ../python/texttest_fixture.py 30' python
+
+	generate 'ruby ../ruby/texttest_fixture.rb 30' ruby
+	verify 'ruby ../ruby/texttest_fixture.rb 30' ruby
+
+	generate '../cpp/GildedRoseTextTests' cpp
+	verify '../cpp/GildedRoseTextTests' cpp
+	
+	generate '../C/GildedRoseTextTests' C
+	verify '../C/GildedRoseTextTests' C
 
 
 Scripts originally based on code by Samir Talwar: https://github.com/SamirTalwar/trivia-golden-master
