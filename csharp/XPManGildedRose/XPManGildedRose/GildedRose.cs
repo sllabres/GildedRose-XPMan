@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace GildedRose
+namespace XPManGildedRose
 {
 	class GildedRose
 	{

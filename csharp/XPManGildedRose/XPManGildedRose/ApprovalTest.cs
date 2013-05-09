@@ -13,7 +13,8 @@ namespace GildedRoseTests
 		[Test]
 		public void ThirtyDays()
 		{
-            FileStream fs = new FileStream(@"C:\Temp\XPManGildedRose\Output.txt", FileMode.Create);
+            var outputLocation = @"C:\gildedrose\GildedRose-XPMan\Output";
+            FileStream fs = new FileStream(string.Concat(outputLocation, @"\Output.txt"), FileMode.Create);
             TextWriter tmp = Console.Out;
 
             StreamWriter sw = new StreamWriter(fs);
@@ -22,6 +23,10 @@ namespace GildedRoseTests
 			Program.Main(new string[] { });
 
             sw.Close();
+
+		    var output = File.ReadAllText(string.Concat(outputLocation, @"\Output.txt"));
+            var goldenMasterOutput = File.ReadAllText(string.Concat(outputLocation, @"\GoldenMaster.txt")); ;
+		    Assert.That(output, Is.EqualTo(goldenMasterOutput));
 		}
 	}
 	
